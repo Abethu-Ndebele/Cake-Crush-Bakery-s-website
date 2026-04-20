@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Cart</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#fff5ee,#f8d7da,#d9a066);
+text-align:center;
+color:#4b2e2e;
+}
+
+nav{
+background:#8b5e3c;
+padding:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+button{
+background:pink;
+border:none;
+padding:10px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+margin:5px;
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+width:250px;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<a href="home.html">Home</a>
+<a href="about.html">About</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<h1>Your Cart</h1>
+
+<div id="cart-items"></div>
+<p id="total">Total: R0</p>
+
+<h2>Checkout</h2>
+
+<input type="text" id="name" placeholder="Your Name"><br><br>
+<input type="text" id="address" placeholder="Delivery Address"><br><br>
+
+<button onclick="orderWhatsApp()">Order via WhatsApp</button>
+
+<script>
+function displayCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartDiv = document.getElementById("cart-items");
+let total = 0;
+
+cartDiv.innerHTML = "";
+
+if(cart.length === 0){
+cartDiv.innerHTML = "<p>Your cart is empty</p>";
+}
+
+cart.forEach((item, index) => {
+cartDiv.innerHTML += `
+<p>
+${item.name} - R${item.price}
+<button onclick="removeItem(${index})">Remove</button>
+</p>
+`;
+total += item.price;
+});
+
+document.getElementById("total").innerText = "Total: R" + total;
+}
+
+function removeItem(index){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.splice(index,1);
+localStorage.setItem("cart", JSON.stringify(cart));
+displayCart();
+}
+
+function orderWhatsApp(){
+let name = document.getElementById("name").value;
+let address = document.getElementById("address").value;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(name === "" || address === ""){
+alert("Please fill in all fields");
+return;
+}
+
+if(cart.length === 0){
+alert("Your cart is empty");
+return;
+}
+
+let message = "Hello Cake Crush Bakery!%0A";
+message += "Name: " + name + "%0A";
+message += "Address: " + address + "%0A";
+message += "Order:%0A";
+
+cart.forEach(item => {
+message += "- " + item.name + " (R" + item.price + ")%0A";
+});
+
+// 🔴 PUT YOUR REAL NUMBER HERE
+let phone = "27700000000";
+
+window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+}
+
+// Load cart automatically
+displayCart();
+</script>
+
+</body>
+</html>
