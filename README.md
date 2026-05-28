@@ -59,4 +59,12 @@ Products are displayed in a grid layout with images, prices, and an "Add" button
 
 ## 📌 Note
 
-This project was created for educational purposes as part of a web development assignment.
+This project was created for educational purposes as part of a web development assignment.<img width="1864" height="1061" alt="Screenshot 2026-05-28 124059" src="https://github.com/user-attachments/assets/7006afd1-3d1a-46b3-9dcd-0791bb55eed0" />
+
+<img width="1499" height="846" alt="Screenshot 2026-05-28 124019" src="https://github.com/user-attachments/assets/894f4f42-19dc-4b71-a684-31486244e528" />
+
+<img width="1839" height="1012" alt="Screenshot 2026-05-28 124124" src="https://github.com/user-attachments/assets/f9a3f39f-d386-4182-912f-45cca87266bb" />
+
+
+
+
